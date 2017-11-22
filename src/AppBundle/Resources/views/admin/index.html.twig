@@ -1,0 +1,50 @@
+{% extends '@App/base.html.twig' %}
+
+{% block content %}
+    <div class="row" style="height: 100px;"></div>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="card">
+                <div class="card-header">
+                    Pokemon Go Notifications
+                    <a class="float-right btn btn-secondary btn-sm" href="{{ path('fos_user_security_logout') }}">Logout</a>
+                </div>
+                <div class="card-body">
+                    {{ form_start(form) }}
+                    <div class="form-group row">
+                        <div class="col-3">
+                            {{ form_label(form.skype_username) }}
+                        </div>
+                        <div class="col-6">
+                            {{ form_widget(form.skype_username) }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-3">
+                            {{ form_label(form.pokemonIDs) }}
+                        </div>
+                        <div class="col-6">
+                            {{ form_widget(form.pokemonIDs) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-3">
+                            <input type="submit" class="btn btn-success" value="Save">
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#{{ form.pokemonIDs.vars.id }}').select2();
+        });
+    </script>
+{% endblock %}

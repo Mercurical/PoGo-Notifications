@@ -1,0 +1,24 @@
+services:
+    #BOT
+    app_bundle_skype_bot:
+        class: AppBundle\Service\Bot\SkypeBot
+        arguments: ['%bot_id%', '%bot_secret%']
+
+    # DATA
+    app_bundle_pokemon_data:
+        class: AppBundle\Service\Data\PokemonData
+        arguments: ['@app_bundle_pokemon_data_transformer', '%pokemon_data_url%']
+    app_bundle_geo_location_data:
+        class: AppBundle\Service\Data\GeoLocationData
+        arguments: ['@app_bundle_geo_location_data_transformer', '%google_geocode_url%', '%google_geocode_api_key%']
+
+    # TRANSFORMER
+    app_bundle_pokemon_data_transformer:
+        class: AppBundle\Service\Transformer\PokemonDataTransformer
+    app_bundle_geo_location_data_transformer:
+        class: AppBundle\Service\Transformer\GeoLocationDataTransformer
+
+    # LISTENER
+    app_bundle_user_registered_listener:
+        class: AppBundle\EventListener\UserRegisteredListener
+        arguments: ['@doctrine.orm.entity_manager']

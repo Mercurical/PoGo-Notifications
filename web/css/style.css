@@ -1,0 +1,11 @@
+body {
+    background: #333333;
+    background: -webkit-linear-gradient(left, #333333 , #888888);
+    background: -o-linear-gradient(right, #333333, #888888);
+    background: -moz-linear-gradient(right, #333333, #888888);
+    background: linear-gradient(to right, #333333 , #888888);
+}
+
+.select2-selection__choice {
+    margin-top: 2px!important;
+}

@@ -1,0 +1,56 @@
+{% extends '@App/admin/Account/layout.html.twig' %}
+{% block account_form %}
+    {{ form_errors(form) }}
+
+    <form name="fos_user_registration_form" method="post" action="/register/" class="fos_user_registration_register">
+        <div id="fos_user_registration_form">
+            <div class="form-group row">
+                <div class="col-3">
+                    <label for="fos_user_registration_form_email" class="required">Email</label>
+                </div>
+                <div class="col-6">
+                    <input class="form-control" id="fos_user_registration_form_email" name="fos_user_registration_form[email]" required="required" type="email">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3">
+                    <label for="fos_user_registration_form_username" class="required">Username</label>
+                </div>
+                <div class="col-6">
+                    <input class="form-control" id="fos_user_registration_form_username" name="fos_user_registration_form[username]" required="required" maxlength="180" pattern=".{2,}" type="text">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3">
+                    <label for="fos_user_registration_form_plainPassword_first" class="required">Password</label>
+                </div>
+                <div class="col-6">
+                    <input class="form-control" id="fos_user_registration_form_plainPassword_first" name="fos_user_registration_form[plainPassword][first]" required="required" type="password">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3">
+                    <label for="fos_user_registration_form_plainPassword_second" class="required">Repeat password</label>
+                </div>
+                <div class="col-6">
+                    <input class="form-control" id="fos_user_registration_form_plainPassword_second" name="fos_user_registration_form[plainPassword][second]" required="required" type="password">
+                </div>
+            </div>
+
+            {{ form_widget(form._token) }}
+
+            <div class="form-group row">
+                <div class="col-3">
+                    <input class="btn btn-success" value="Register" type="submit">
+                </div>
+                <div class="col-3">
+                    <a href="{{ path('fos_user_registration_register') }}">Back to log in</a>
+                </div>
+            </div>
+        </div>
+
+    </form>
+{% endblock %}

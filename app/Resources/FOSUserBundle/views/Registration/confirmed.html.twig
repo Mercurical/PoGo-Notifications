@@ -1,0 +1,9 @@
+{% extends '@App/admin/Account/layout.html.twig' %}
+
+{% block account_form %}
+    {% trans_default_domain 'FOSUserBundle' %}
+    <div class="alert alert-success" role="alert">
+        {{ 'registration.confirmed'|trans({'%username%': user.username}) }}
+    </div>
+    <a href="{{ path('admin_homepage') }}">Onwards to configuration >></a>
+{% endblock %}
