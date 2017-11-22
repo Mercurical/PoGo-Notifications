@@ -73,7 +73,7 @@ class NotifyCommand extends ContainerAwareCommand
                 }
             }
 
-            $highestID = $pokemon->getId() > $highestID ? $pokemon->getId() : $highestID;
+            $highestID = $this->getRawID($pokemon->getId()) > $highestID ? $this->getRawID($pokemon->getId()) : $highestID;
         }
 
         $lastID->setVal($highestID);
@@ -101,5 +101,17 @@ class NotifyCommand extends ContainerAwareCommand
         }
 
         return $obj;
+    }
+
+    /**
+     * TODO: move somewhere else
+     * @param $id
+     * @return mixed
+     */
+    public function getRawID($id)
+    {
+        $parts = explode('-', $id);
+
+        return $parts[1];
     }
 }
