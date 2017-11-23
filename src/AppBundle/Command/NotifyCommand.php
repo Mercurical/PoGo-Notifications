@@ -63,7 +63,7 @@ class NotifyCommand extends ContainerAwareCommand
                 ) {
                     $geoLocation = $geocodeApi->getData($pokemon);
 
-                    $message = '##' . $pokemon->getPokemonId() . ' ' . $pokemon->getName() . ', ' .
+                    $message = 'N￮' . $pokemon->getPokemonId() . ' ' . $pokemon->getName() . ', ' .
                         $geoLocation->getLongRouteName() . ' ' . $geoLocation->getLongStreetNumber() .
                         ', ' . $pokemon->getTimeToExpire();
                     $simpleBot->sendMessage($message, $config->getSkypeUsername());
