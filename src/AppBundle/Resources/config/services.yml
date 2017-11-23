@@ -3,6 +3,9 @@ services:
     app_bundle_skype_bot:
         class: AppBundle\Service\Bot\SkypeBot
         arguments: ['%bot_id%', '%bot_secret%']
+    app_bundle_simple_skype_bot:
+        class: AppBundle\Service\Bot\SimpleSkypeBot
+        arguments: ['%bot_id%', '%bot_secret%']
 
     # DATA
     app_bundle_pokemon_data:

@@ -31,7 +31,8 @@ class NotifyCommand extends ContainerAwareCommand
     {
         $container = $this->getContainer();
 
-        $bot = $container->get('app_bundle_skype_bot');
+        //$bot = $container->get('app_bundle_skype_bot');
+        $simpleBot = $container->get('app_bundle_simple_skype_bot');
         $dataApi = $container->get('app_bundle_pokemon_data');
         $geocodeApi = $container->get('app_bundle_geo_location_data');
         $configRepo = $container->get('doctrine')->getRepository('AppBundle:Configuration');
@@ -62,10 +63,11 @@ class NotifyCommand extends ContainerAwareCommand
                 ) {
                     $geoLocation = $geocodeApi->getData($pokemon);
 
-                    $message = '#' . $pokemon->getPokemonId() . ' ' . $pokemon->getName() . ', ' .
+                    $message = '##' . $pokemon->getPokemonId() . ' ' . $pokemon->getName() . ', ' .
                         $geoLocation->getLongRouteName() . ' ' . $geoLocation->getLongStreetNumber() .
                         ', ' . $pokemon->getTimeToExpire();
-                    $bot->sendMessage($message, $config->getSkypeUsername());
+                    $simpleBot->sendMessage($message, $config->getSkypeUsername());
+                    //$bot->sendMessage($message, $config->getSkypeUsername());
 
                     echo 'Sent to "' . $config->getSkypeUsername() . '": ' . $message . "\n";
 
