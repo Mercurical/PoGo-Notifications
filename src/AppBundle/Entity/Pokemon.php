@@ -79,7 +79,7 @@ class Pokemon
         $this->setTrash($data['trash'] == "true" ? true : false);
         $this->setTimestamp((int)$data['expires_at']);
 
-        if (in_array('atk', $data)) {
+        if (array_key_exists('atk', $data)) {
             $this->setAttack($data['atk']);
             $this->setDefense($data['def']);
             $this->setStamina($data['sta']);
@@ -288,7 +288,7 @@ class Pokemon
      */
     public function hasIV(): bool
     {
-        return $this->attack + $this->defense + $this->stamina > 0;
+        return ($this->attack + $this->defense + $this->stamina) > 0;
     }
 
     /**
@@ -296,6 +296,6 @@ class Pokemon
      */
     public function getIV(): string
     {
-        return number_format($this->attack + $this->defense + $this->stamina / 45, 2);
+        return number_format(($this->attack + $this->defense + $this->stamina) / 45 * 100, 2);
     }
 }
