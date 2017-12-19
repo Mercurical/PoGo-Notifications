@@ -40,6 +40,21 @@ class Pokemon
     private $timestamp;
 
     /**
+     * @var int
+     */
+    private $attack = 0;
+
+    /**
+     * @var int
+     */
+    private $defense = 0;
+
+    /**
+     * @var int
+     */
+    private $stamina = 0;
+
+    /**
      * @var bool
      */
     private $trash;
@@ -63,6 +78,12 @@ class Pokemon
         $this->setPokemonId($data['pokemon_id']);
         $this->setTrash($data['trash'] == "true" ? true : false);
         $this->setTimestamp((int)$data['expires_at']);
+
+        if (in_array('atk', $data)) {
+            $this->setAttack($data['atk']);
+            $this->setDefense($data['def']);
+            $this->setStamina($data['sta']);
+        }
     }
 
     /**
@@ -212,5 +233,69 @@ class Pokemon
     public function setTimestamp(int $timestamp)
     {
         $this->timestamp = $timestamp;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAttack(): int
+    {
+        return $this->attack;
+    }
+
+    /**
+     * @param int $attack
+     */
+    public function setAttack(int $attack)
+    {
+        $this->attack = $attack;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDefense(): int
+    {
+        return $this->defense;
+    }
+
+    /**
+     * @param int $defense
+     */
+    public function setDefense(int $defense)
+    {
+        $this->defense = $defense;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStamina(): int
+    {
+        return $this->stamina;
+    }
+
+    /**
+     * @param int $stamina
+     */
+    public function setStamina(int $stamina)
+    {
+        $this->stamina = $stamina;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasIV(): bool
+    {
+        return $this->attack + $this->defense + $this->stamina > 0;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIV(): string
+    {
+        return number_format($this->attack + $this->defense + $this->stamina / 45, 2);
     }
 }
