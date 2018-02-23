@@ -71,8 +71,14 @@ class NotifyCommand extends ContainerAwareCommand
                     $message = 'N￮' . $pokemon->getPokemonId() . ' ' . $pokemon->getName() . $iv .', ' .
                         $geoLocation->getLongRouteName() . ' ' . $geoLocation->getLongStreetNumber() .
                         ', ' . $pokemon->getTimeToExpire();
-                    $simpleBot->sendMessage($message, $config->getSkypeUsername());
-                    //$bot->sendMessage($message, $config->getSkypeUsername());
+                    try {
+                        $simpleBot->sendMessage($message, $config->getSkypeUsername());
+                    } catch (\Exception $e) {
+                        echo 'ERROR!' . PHP_EOL;
+                        echo 'Exception message: ' . $e->getMessage() . PHP_EOL;
+                        echo 'Skype username: ' . $config->getSkypeUsername() . PHP_EOL;
+                        echo 'Message: ' . $message . PHP_EOL . PHP_EOL;
+                    }
 
                     echo 'Sent to "' . $config->getSkypeUsername() . '": ' . $message . "\n";
 
